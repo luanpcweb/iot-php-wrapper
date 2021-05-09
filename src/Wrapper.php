@@ -4,7 +4,7 @@ namespace Iot\Wrapper;
 
 class Wrapper
 {
-    private static $wrapperName = 'arduino';
+    private static $wrapperName = 'iot';
     private $path;
 
     public function __construct()
@@ -14,7 +14,7 @@ class Wrapper
 
     public function stream_open($path, $mode, $options = null, &$opened_path = null )
     {
-        $realPath = str_replace('arduino://', '', $path);
+        $realPath = str_replace('iot://', '', $path);
         $this->path = fopen($realPath, 'r+');
 
         return true;

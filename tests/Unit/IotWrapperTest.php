@@ -26,7 +26,7 @@ class IotWrapperTest extends TestCase
 
         $has = false;
         foreach (stream_get_wrappers() as $wrapper) {
-            if ($wrapper == 'arduino') {
+            if ($wrapper == 'iot') {
                 $has = true;
                 break;
             }
@@ -37,7 +37,7 @@ class IotWrapperTest extends TestCase
 
     public function testShouldSendDataToIotDevice()
     {
-        $resource = fopen('arduino://' . $this->fakeUsbPath, 'r+');
+        $resource = fopen('iot://' . $this->fakeUsbPath, 'r+');
         fwrite($resource, 'data to iot device');
 
         $this->assertTrue(is_resource($resource));
@@ -46,7 +46,7 @@ class IotWrapperTest extends TestCase
     public function testShouldHandlerErrorWhenTheUsbIsNotAvailable()
     {
         $this->markTestSkipped('Check ');
-        fopen('arduino:///foo/bar/tty_fake_usb', 'r+');
+        fopen('iot:///foo/bar/tty_fake_usb', 'r+');
     }
 
 }

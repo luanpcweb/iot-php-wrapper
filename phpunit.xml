@@ -9,11 +9,13 @@
          stopOnFailure="false"
          bootstrap="vendor/autoload.php">
     <testsuites>
-        <testsuite name="iot wrapper">
+        <testsuite name="Unit">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
-    <blacklist>
-        <directory>vendor</directory>
-    </blacklist>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src</directory>
+        </whitelist>
+    </filter>
 </phpunit>

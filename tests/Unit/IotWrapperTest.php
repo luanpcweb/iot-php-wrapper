@@ -1,8 +1,25 @@
 <?php
-namespace Iot\Wrapper\Test\Unit;
 
-class IotTest extends \IotTestCase
+namespace Tests\Unit;
+
+use PHPUnit\Framework\TestCase;
+
+class IotWrapperTest extends TestCase
 {
+    protected $fakeIotDeviceUsbResource;
+    protected $fakeUsbPath = 'ttyUSB0_fake';
+
+    public function setUp()
+    {
+        $this->fakeIotDeviceUsbResource = fopen($this->fakeUsbPath, 'w');
+    }
+
+    public function tearDown()
+    {
+        fclose($this->fakeIotDeviceUsbResource);
+        unlink($this->fakeUsbPath);
+    }
+
     public function testShouldDefineIotWrapperToBeUsed()
     {
         $iot = new \Iot\Wrapper\Wrapper();
